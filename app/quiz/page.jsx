@@ -24,13 +24,13 @@ export default function QuizPage() {
   const tokenRef = useRef(null);
   const endTimeRef = useRef(null);
   const [blanks, setBlanks] = useState([]);
-  const [htmlTemplate, setHtmlTemplate] = useState('');
+  const [htmlTemplate, setHtmlTemplate] = useState("");
   const [duration, setDuration] = useState(1800);
   const [quizLoading, setQuizLoading] = useState(true);
 
   const isLockedRef = useRef(false);
   const answersRef = useRef({});
-  
+
   useEffect(() => {
     isLockedRef.current = isLocked;
   }, [isLocked]);
@@ -43,7 +43,7 @@ export default function QuizPage() {
   useEffect(() => {
     const loadQuiz = async () => {
       try {
-        const response = await fetch('/api/quiz');
+        const response = await fetch("/api/quiz");
         const data = await response.json();
         if (data.htmlTemplate && data.blanks) {
           setHtmlTemplate(data.htmlTemplate);
@@ -52,7 +52,7 @@ export default function QuizPage() {
           setHtmlContent(data.htmlTemplate);
         }
       } catch (error) {
-        console.error('Failed to load quiz:', error);
+        console.error("Failed to load quiz:", error);
       } finally {
         setQuizLoading(false);
       }
@@ -63,7 +63,11 @@ export default function QuizPage() {
 
   const handleSubmit = async () => {
     if (!tokenRef.current || !endTimeRef.current || isLocked) {
-      console.log('Submit blocked:', { token: !!tokenRef.current, endTime: !!endTimeRef.current, isLocked });
+      console.log("Submit blocked:", {
+        token: !!tokenRef.current,
+        endTime: !!endTimeRef.current,
+        isLocked,
+      });
       return;
     }
 
@@ -83,8 +87,8 @@ export default function QuizPage() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Submit error:', errorData);
-        alert(errorData.error || 'Submit failed');
+        console.error("Submit error:", errorData);
+        alert(errorData.error || "Submit failed");
         setIsSubmitting(false);
         return;
       }
@@ -99,7 +103,7 @@ export default function QuizPage() {
       }
     } catch (error) {
       console.error("Submit failed:", error);
-      alert('Failed to submit quiz. Please try again.');
+      alert("Failed to submit quiz. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -107,8 +111,7 @@ export default function QuizPage() {
 
   const handleAutoSubmit = async () => {
     if (isLockedRef.current) return;
-    // Get latest answers from ref for auto-submit
-    await handleSubmit(answersRef.current);
+    await handleSubmit();
   };
 
   useEffect(() => {
@@ -140,7 +143,7 @@ export default function QuizPage() {
     }
     setEndTime(end);
     endTimeRef.current = end;
-    
+
     // Update time remaining function
     const updateTime = () => {
       if (!endTimeRef.current) return;
@@ -163,7 +166,7 @@ export default function QuizPage() {
 
       setTimeRemaining(remaining);
     };
-    
+
     // Initial time update
     updateTime();
 
@@ -202,7 +205,11 @@ export default function QuizPage() {
 
   const handleCheck = async () => {
     if (!tokenRef.current || !endTimeRef.current || isLocked) {
-      console.log('Check blocked:', { token: !!tokenRef.current, endTime: !!endTimeRef.current, isLocked });
+      console.log("Check blocked:", {
+        token: !!tokenRef.current,
+        endTime: !!endTimeRef.current,
+        isLocked,
+      });
       return;
     }
 
@@ -222,8 +229,8 @@ export default function QuizPage() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Check error:', errorData);
-        alert(errorData.error || 'Check failed');
+        console.error("Check error:", errorData);
+        alert(errorData.error || "Check failed");
         return;
       }
 
@@ -231,59 +238,10 @@ export default function QuizPage() {
       setCheckResults(data);
     } catch (error) {
       console.error("Check failed:", error);
-      alert('Failed to check answers. Please try again.');
+      alert("Failed to check answers. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleSubmit = async () => {
-    if (!tokenRef.current || !endTimeRef.current || isLocked) {
-      console.log('Submit blocked:', { token: !!tokenRef.current, endTime: !!endTimeRef.current, isLocked });
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      const participantName = localStorage.getItem("participantName") || null;
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          token: tokenRef.current,
-          endTime: endTimeRef.current,
-          participantName,
-          answers: answersRef.current,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Submit error:', errorData);
-        alert(errorData.error || 'Submit failed');
-        setIsSubmitting(false);
-        return;
-      }
-
-      const data = await response.json();
-      setFinalResults(data);
-      setIsLocked(true);
-      isLockedRef.current = true;
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-    } catch (error) {
-      console.error("Submit failed:", error);
-      alert('Failed to submit quiz. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleAutoSubmit = async () => {
-    if (isLocked) return;
-    await handleSubmit();
   };
 
   const formatTime = (seconds) => {

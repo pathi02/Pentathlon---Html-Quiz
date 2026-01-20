@@ -193,7 +193,7 @@ export default function AdminDashboard() {
                   <th>Max Score</th>
                   <th>Percentage</th>
                   <th>Submitted At</th>
-                  <th>Time Up</th>
+                  <th>Duration</th>
                   <th>Remove</th>
                 </tr>
               </thead>
@@ -222,6 +222,28 @@ export default function AdminDashboard() {
                       (submission.score / maxScore) * 100,
                     );
                     const date = new Date(submission.timestamp);
+                    const durationSeconds = quiz?.durationSeconds || 1800;
+                    let timeTaken;
+                    if (
+                      submission.endTime &&
+                      typeof submission.endTime === "number"
+                    ) {
+                      timeTaken = submission.timeUp
+                        ? durationSeconds
+                        : Math.max(
+                            0,
+                            durationSeconds -
+                              Math.floor(
+                                (submission.endTime - submission.timestamp) /
+                                  1000,
+                              ),
+                          );
+                    } else {
+                      timeTaken = submission.timeUp ? durationSeconds : 0; // For old submissions without endTime
+                    }
+                    const minutes = Math.floor(timeTaken / 60);
+                    const seconds = timeTaken % 60;
+                    const formattedDuration = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 
                     return (
                       <tr key={submission.token}>
@@ -231,7 +253,7 @@ export default function AdminDashboard() {
                         <td>{maxScore}</td>
                         <td>{percentage}%</td>
                         <td>{date.toLocaleString()}</td>
-                        <td>{submission.timeUp ? "Yes" : "No"}</td>
+                        <td>{formattedDuration}</td>
                         <td>
                           <button
                             onClick={() =>

@@ -1,6 +1,6 @@
 {
   "durationSeconds": 1800,
-  "htmlTemplate": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>My Web Page</title>\n</head>\n<body>\n    <h1>Welcome to My Website</h1>\n    \n+    <__BLANK_1__>This is a paragraph about web development.</__BLANK_1__>\n    \n+    <__BLANK_2__>\n        <li>First item</li>\n        <li>Second item</li>\n        <li>Third item</li>\n    </__BLANK_2__>\n    \n+    <__BLANK_3__>\n        <li>Apple</li>\n        <li>Banana</li>\n        <li>Cherry</li>\n    </__BLANK_3__>\n    \n+    <__BLANK_4__>\n    \n+    <p>Visit our <__BLANK_5__ href=\"https://example.com\">homepage</__BLANK_5__> for more information.</p>\n    \n+    <__BLANK_6__ src=\"logo.png\" alt=\"Company Logo\" />\n    \n+    <footer>\n        <p>Copyright &copy; 2024</p>\n    </footer>\n</body>\n</html>",
+  "htmlTemplate": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>My Web Page</title>\n</head>\n<body>\n    <h1>Welcome to My Website</h1>\n    \n+    <__BLANK_1__>This is a paragraph about web development.</__BLANK_1__>\n    \n+    <__BLANK_2__>\n        <li>First item</li>\n        <li>Second item</li>\n        <li>Third item</li>\n    </__BLANK_2__>\n    \n+    <__BLANK_3__>\n        <li>Apple</li>\n        <li>Banana</li>\n        <li>Cherry</li>\n    </__BLANK_3__>\n    \n+    <__BLANK_4__>\n    \n+    <p>Visit our <__BLANK_5__ href=\"https://example.com\">homepage</__BLANK_5__> for more information.</p>\n    \n+    <__BLANK_6__ src=\"logo.png\" alt=\"Company Logo\" />\n    \n+    <footer>\n        <p>Copyright &copy; 2024</p>\n    </footer>\n</BLANK_7>\n</html>",
   "blanks": [
     {
       "id": "BLANK_1",
@@ -8,7 +8,10 @@
       "points": 20,
       "trim": true,
       "caseSensitive": false,
-      "acceptedAnswers": ["p", "P"]
+      "acceptedAnswers": [
+        "p",
+        "P"
+      ]
     },
     {
       "id": "BLANK_2",
@@ -16,7 +19,11 @@
       "points": 15,
       "trim": true,
       "caseSensitive": false,
-      "acceptedAnswers": ["ol", "OL", "orderedlist"]
+      "acceptedAnswers": [
+        "ol",
+        "OL",
+        "orderedlist"
+      ]
     },
     {
       "id": "BLANK_3",
@@ -45,6 +52,14 @@
       "points": 20,
       "trim": true,
       "caseSensitive": false
+    },
+    {
+      "id": "BLANK_7",
+      "expected": "body",
+      "points": 10,
+      "trim": true,
+      "caseSensitive": false,
+      "acceptedAnswers": []
     }
   ]
 }

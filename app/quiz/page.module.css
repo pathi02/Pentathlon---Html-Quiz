@@ -1,0 +1,266 @@
+.container {
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timer {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.checkButton,
+.submitButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.checkButton {
+    background: #4CAF50;
+    color: white;
+}
+
+.checkButton:hover:not(:disabled) {
+    background: #45a049;
+}
+
+.submitButton {
+    background: #2196F3;
+    color: white;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #0b7dda;
+}
+
+.checkButton:disabled,
+.submitButton:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.quizLayout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+}
+
+.editorSection,
+.inputsSection {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.blanksList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.blankItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.blankLabel {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.points {
+    color: #666;
+    font-weight: normal;
+}
+
+.blankInput {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    font-family: 'Courier New', monospace;
+}
+
+.blankInput:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+.blankInput:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.blankInput.neutral {
+    border-color: #ddd;
+}
+
+.blankInput.correct {
+    border-color: #4CAF50;
+    background: #f1f8f4;
+}
+
+.blankInput.incorrect {
+    border-color: #f44336;
+    background: #fff5f5;
+}
+
+.feedbackCorrect,
+.feedbackIncorrect {
+    margin-top: 5px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.feedbackCorrect {
+    color: #4CAF50;
+}
+
+.feedbackIncorrect {
+    color: #f44336;
+}
+
+/* Results styles */
+.resultsCard {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.resultsTitle {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.scoreDisplay {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.totalScore {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2196F3;
+}
+
+.breakdown {
+    margin-bottom: 30px;
+}
+
+.breakdown h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.resultsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.resultsTable th,
+.resultsTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.resultsTable th {
+    background: #f5f5f5;
+    font-weight: 600;
+    color: #555;
+}
+
+.resultsTable tr:hover {
+    background: #f9f9f9;
+}
+
+.correctBadge,
+.incorrectBadge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.correctBadge {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.incorrectBadge {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.restartButton {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.restartButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .quizLayout {
+        grid-template-columns: 1fr;
+    }
+}
+
+
